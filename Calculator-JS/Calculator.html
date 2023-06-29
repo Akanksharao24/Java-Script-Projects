@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <style>
+            body {
+                background-color: #000000;
+                color: #FFFFFF;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            
+            #calculator-container {
+                text-align: center;
+            }
+            
+            #Calculator {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            
+            table {
+                margin: 0 auto;
+                border-collapse: collapse;
+            }
+            
+            td {
+                padding: 10px;
+            }
+            
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                font-size: 24px;
+                border: none;
+                background-color: #222222;
+                color: #FFFFFF;
+                text-align: right;
+            }
+            
+            input[type="button"] {
+                width: 100%;
+                padding: 15px;
+                font-size: 18px;
+                border: none;
+                background-color: #444444;
+                color: #FFFFFF;
+                cursor: pointer;
+            }
+            
+            input[type="button"]:hover {
+                background-color: #666666;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="calculator-container">
+            <div id="Calculator" class="Title"> Basic Calculator </div>
+            <table border="0">
+                <tr>
+                    <td colspan="3"><input type="text" id="result"></td>
+                    <td><input type="button" value="C" onclick="clearDisplay()"></td>
+                </tr>
+                <tr>
+                    <td> <input type="button" value="1" onclick="display('1')"></td>
+                    <td> <input type="button" value="2" onclick="display('2')"></td>
+                    <td> <input type="button" value="3" onclick="display('3')"></td>
+                    <td> <input type="button" value="/" onclick="display('/')"></td>
+                </tr>
+                <tr>
+                    <td> <input type="button" value="4" onclick="display('4')"></td>
+                    <td> <input type="button" value="5" onclick="display('5')"></td>
+                    <td> <input type="button" value="6" onclick="display('6')"></td>
+                    <td> <input type="button" value="-" onclick="display('-')"></td>
+                </tr>
+                <tr>
+                    <td> <input type="button" value="7" onclick="display('7')"></td>
+                    <td> <input type="button" value="8" onclick="display('8')"></td>
+                    <td> <input type="button" value="9" onclick="display('9')"></td>
+                    <td> <input type="button" value="+" onclick="display('+')"></td>
+                </tr>
+                <tr>
+                    <td> <input type="button" value="." onclick="display('.')"></td>
+                    <td> <input type="button" value="0" onclick="display('0')"></td>
+                    <td> <input type="button" value="=" onclick="equate()"></td>
+                    <td> <input type="button" value="*" onclick="display('*')"></td>
+                </tr>
+            </table>
+        </div>
+        <script type="text/javascript">
+            function clearDisplay() {
+                document.getElementById("result").value = '';
+            }
+            
+            function display(val) {
+                document.getElementById("result").value += val;
+            }
+            
+            function equate() {
+                let x = document.getElementById("result").value;
+                
+                try {
+                    let y = eval(x);
+                    
+                    if (isNaN(y) || !isFinite(y)) {
+                        throw "Invalid input";
+                    }
+                    
+                    document.getElementById("result").value = y;
+                } catch (error) {
+                    document.getElementById("result").value = 'Error';
+                }
+            } 
+        </script>
+    </body>
+</html>
